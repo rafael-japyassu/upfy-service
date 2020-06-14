@@ -1,9 +1,8 @@
-import { Router, Request, Response } from "express";
-
+import { Router } from "express";
+import { saveUser, listUser } from "../controller/UserController";
 const userRoutes = Router();
 
-userRoutes.get('/', (request: Request, response: Response) => {
-    return response.json({ message: 'User GET router' })
-});
+userRoutes.get("/", listUser);
+userRoutes.post("/", saveUser);
 
 export default userRoutes;
