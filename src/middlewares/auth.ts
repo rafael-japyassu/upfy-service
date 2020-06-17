@@ -1,25 +1,19 @@
-  
-import { Request, Response, NextFunction } from "express"
-import * as jwt from "jsonwebtoken"
+import { Request, Response, NextFunction } from 'express'
+import * as jwt from 'jsonwebtoken'
 
-export const auth = async (request: Request, response: Response, next: NextFunction) => {
+export const auth = async (request: Request, response: Response, next: NextFunction): Promise<Response<any>> => {
+  const authHeader = request.headers.authorization
 
-    const authHeader = request.headers.authorization
+  if (!authHeader) {
+    return response.status(401).json({ message: 'Token is required!' })
+  }
 
-    if (!authHeader) {
-        return response.status(401).json({ message: "Token is required!" })
-    }
+  const [, token] = authHeader.split(' ')
 
-    const [ ,token] = authHeader.split(" ")
-
-    try {
-
-        await jwt.verify(token, process.env.APP_SECRET_KEY)
-        next()
-
-    } catch(error) {
-
-        return response.status(401).json({ message: "Token invalid!" })
-    }
-
+  try {
+    await jwt.verify(token, process.env.APP_SECRET_KEY)
+    next()
+  } catch (error) {
+    return response.status(401).json({ message: 'Token invalid!' })
+  }
 }

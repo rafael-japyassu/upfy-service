@@ -1,8 +1,9 @@
-import { Router } from "express";
-import { saveUser, listUser } from "../controller/UserController";
-const userRoutes = Router();
+import { Router } from 'express'
+import { saveUser, listUser, findUser } from '../controller/UserController'
+const userRoutes = Router()
 
-userRoutes.get("/", listUser);
-userRoutes.post("/", saveUser);
+userRoutes.get('/', listUser)
+userRoutes.get('/:id', findUser)
+userRoutes.post('/', saveUser)
 
-export default userRoutes;
+export default userRoutes
