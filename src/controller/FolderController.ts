@@ -33,6 +33,9 @@ export const saveFolder = async (request: Request, response: Response): Promise<
     })
     return response.json(folder)
   } catch (error) {
+    if (error.message.includes('duplicate key')) {
+      return response.status(422).json({ message: 'Error in server' })
+    }
     return response.status(500).json({ message: 'Error in server' })
   }
 }
@@ -52,6 +55,9 @@ export const updateFolder = async (request: Request, response: Response): Promis
       return response.json({ message: 'Error in update Folder!' })
     }
   } catch (error) {
+    if (error.message.includes('duplicate key')) {
+      return response.status(422).json({ message: 'Error in server' })
+    }
     return response.status(404).json({ message: 'Folder not found!' })
   }
 }

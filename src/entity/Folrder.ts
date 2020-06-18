@@ -7,6 +7,8 @@ export class Folder {
   id: string;
 
   @Column({
+    type: 'varchar',
+    length: 30,
     unique: true
   })
   name: string;
@@ -15,9 +17,9 @@ export class Folder {
   files: FileUpload[];
 
   @CreateDateColumn({
-    name: 'create_at'
+    name: 'created_at'
   })
-  createAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({
     name: 'updated_at'
