@@ -27,7 +27,7 @@
       "typescript": "3.3.3333"
    },
    "dependencies": {
-      "aws-sdk": "^2.696.0",
+      "aws-sdk": "^2.814.0",
       "bcrypt": "^5.0.0",
       "body-parser": "^1.18.1",
       "cors": "^2.8.5",
